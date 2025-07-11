@@ -3,6 +3,7 @@ package dev.muuli.gtd.app.library.android
 import android.widget.Toast
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import dev.muuli.gtd.library.android.ToastUtil
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith

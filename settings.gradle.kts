@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+rootProject.name = ("getting-things-done-android-client")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.detekt)
     alias(libs.plugins.versions)
+    alias(libs.plugins.google.gms.google.services) apply false
     cleanup
     base
 }
