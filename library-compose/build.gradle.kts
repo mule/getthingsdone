@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
-        namespace = "com.ncorti.kotlin.template.library.compose"
+        namespace = "dev.muuli.gtd.app.library.compose"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
