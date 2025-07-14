@@ -8,24 +8,29 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.muuli.gtd.library.compose.ui.components.Factorial
+import dev.muuli.gtd.library.compose.auth.AuthViewModel
+import dev.muuli.gtd.library.compose.auth.SignInScreen
 
 
 class ComposeActivity : ComponentActivity() {
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewModel = AuthViewModel()
         setContent {
-            AppMain()
+            AppMain(viewModel)
         }
     }
 }
@@ -33,16 +38,16 @@ class ComposeActivity : ComponentActivity() {
 @ExperimentalAnimationApi
 @Preview
 @Composable
-fun AppMain() {
+fun AppMain(viewModel: AuthViewModel) {
     MaterialTheme {
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text(text = "Kotlin Android Template") },
-                    backgroundColor = MaterialTheme.colors.primary
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
                 )
             },
-            backgroundColor = MaterialTheme.colors.background
+            containerColor = MaterialTheme.colorScheme.background
         ) {
             Box(
                 modifier = Modifier
@@ -51,7 +56,12 @@ fun AppMain() {
                     .wrapContentSize(align = Alignment.Center)
                     .padding(horizontal = 8.dp)
             ) {
-                Factorial()
+                val user by viewModel.user.collectAsState()
+                if (user == null) {
+                    SignInScreen(viewModel)
+                } else {
+                    Factorial()
+                }
             }
         }
     }
