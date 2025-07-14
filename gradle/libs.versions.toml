@@ -18,6 +18,11 @@ target_sdk_version = "36"
 benmanesversion = "0.52.0"
 google-gms-google-services = "4.4.3"
 firebase-database = "21.0.0"
+firebase-auth = "22.3.0"
+play-services-auth = "21.2.0"
+mockk = "1.13.10"
+kotlinx-coroutines-play-services = "1.7.3"
+kotlinx-coroutines-test = "1.7.3"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -41,6 +46,12 @@ espresso_core = { module = "androidx.test.espresso:espresso-core", version = "3.
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kgp = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebase-database" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth" }
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
+compose_material3 = { module = "androidx.compose.material3:material3" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinx-coroutines-play-services" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
