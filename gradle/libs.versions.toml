@@ -23,6 +23,7 @@ play-services-auth = "21.2.0"
 mockk = "1.13.10"
 kotlinx-coroutines-play-services = "1.7.3"
 kotlinx-coroutines-test = "1.7.3"
+firebase-auth-ktx = "23.2.1"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -52,6 +53,7 @@ compose_material3 = { module = "androidx.compose.material3:material3" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinx-coroutines-play-services" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth-ktx" }
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

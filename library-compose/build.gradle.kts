@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
     implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.firebase.auth.ktx)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

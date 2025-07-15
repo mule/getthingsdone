@@ -15,6 +15,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue // <-- Make sure this import is present
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import dev.muuli.gtd.library.compose.ui.components.Factorial
 import dev.muuli.gtd.library.compose.auth.AuthViewModel
 import dev.muuli.gtd.library.compose.auth.SignInScreen
+import androidx.compose.material3.ExperimentalMaterial3Api
 
 
 class ComposeActivity : ComponentActivity() {
@@ -35,6 +37,8 @@ class ComposeActivity : ComponentActivity() {
     }
 }
 
+
+@OptIn(ExperimentalMaterial3Api::class) // <-- Add this annotation
 @ExperimentalAnimationApi
 @Preview
 @Composable
@@ -56,7 +60,7 @@ fun AppMain(viewModel: AuthViewModel) {
                     .wrapContentSize(align = Alignment.Center)
                     .padding(horizontal = 8.dp)
             ) {
-                val user by viewModel.user.collectAsState()
+                val user by viewModel.user.collectAsState() // This line needs the getValue import
                 if (user == null) {
                     SignInScreen(viewModel)
                 } else {
