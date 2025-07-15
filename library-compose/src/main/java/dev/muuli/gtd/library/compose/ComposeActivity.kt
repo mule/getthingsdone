@@ -15,21 +15,17 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue // <-- Make sure this import is present
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.muuli.gtd.library.compose.ui.components.Factorial
 import dev.muuli.gtd.library.compose.auth.AuthViewModel
 import dev.muuli.gtd.library.compose.auth.SignInScreen
 import androidx.compose.material3.ExperimentalMaterial3Api
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import dev.muuli.gtd.library.compose.auth.AuthRepository
-import io.mockk.every
-import io.mockk.mockk
+
 
 
 
