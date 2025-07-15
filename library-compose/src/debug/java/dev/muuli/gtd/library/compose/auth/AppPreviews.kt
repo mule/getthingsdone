@@ -1,6 +1,5 @@
 package dev.muuli.gtd.library.compose.auth
 
-import com.google.firebase.auth.AuthResult
 import dev.muuli.gtd.library.compose.AppMain
 
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -41,28 +40,7 @@ class FakeAuthRepository(
     override val currentUser: FirebaseUser?
         get() = fakeCurrentUser
 
-    override suspend fun signInWithGoogle(idToken: String): AuthResult {
-        // For previews, we might not need a real AuthResult, or a mock one.
-        // You could also simulate a successful login by changing `fakeCurrentUser`
-        // if your ViewModel would realistically update its state from a live AuthResult.
-        // For simplicity, returning a relaxed mock is often enough.
-        println("FakeAuthRepository: signInWithGoogle called with token: $idToken")
-        if (fakeCurrentUser != null) { // If we want to simulate already being signed in
-            return mockk<AuthResult>(relaxed = true).apply {
-                every { user } returns fakeCurrentUser
-            }
-        }
-        // Simulate a new successful login
-        val mockNewUser = mockk<FirebaseUser>(relaxed = true).apply{
-            every { uid } returns "newFakeUser"
-            every { email } returns "newuser@example.com"
-        }
-        return mockk<AuthResult>(relaxed = true).apply {
-            every { user } returns mockNewUser
-        }
-        // To simulate an error:
-        // throw Exception("Simulated Google Sign-In Error")
-    }
+    
 
     override fun signOut() {
         // Can be empty for previews.

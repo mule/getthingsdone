@@ -1,6 +1,7 @@
 package dev.muuli.gtd.app.library
 
-import dev.muuli.gtd.app.library.FactorialCalculator.computeFactorial
+
+import dev.muuli.gtd.library.kotlin.FactorialCalculator.computeFactorial
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test

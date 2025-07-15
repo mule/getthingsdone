@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
     kotlin("android")
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt) // Apply Hilt plugin
+    kotlin("kapt") // Add kotlin-kapt plugin
 
 }
 
@@ -52,9 +54,20 @@ dependencies {
     implementation(libs.compose.material)
     implementation(libs.compose.material3)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.ui.auth)
     implementation(libs.play.services.auth)
     implementation(libs.kotlinx.coroutines.play.services)
-    implementation(libs.firebase.auth.ktx)
+    // implementation(libs.firebase.auth.ktx)
+
+
+
+    // Hilt Dependencies
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    // Optional: Hilt Navigation Compose if you use Jetpack Navigation with Compose
+    implementation(libs.hilt.navigation.compose)
+
     debugImplementation(libs.mockk)
 
 

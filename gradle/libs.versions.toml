@@ -13,17 +13,21 @@ detekt = "1.23.8"
 espresso_core = "3.6.1"
 junit = "4.13.2"
 kotlin = "2.2.0"
-min_sdk_version = "23"
+min_sdk_version = "24"
 target_sdk_version = "36"
 benmanesversion = "0.52.0"
 google-gms-google-services = "4.4.3"
 firebase-database = "21.0.0"
-firebase-auth = "22.3.0"
-play-services-auth = "21.2.0"
-mockk = "1.13.10"
-kotlinx-coroutines-play-services = "1.7.3"
-kotlinx-coroutines-test = "1.7.3"
+firebase-auth = "23.2.1"
+play-services-auth = "21.3.0"
+mockk = "1.14.4"
+kotlinx-coroutines-play-services = "1.10.2"
+kotlinx-coroutines-test = "1.10.2"
 firebase-auth-ktx = "23.2.1"
+hilt = "2.56.2"
+
+
+firebase-ui-auth = "9.0.0"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -48,15 +52,26 @@ agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kgp = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebase-database" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth" }
+firebase-ui-auth = { group = "com.firebaseui", name = "firebase-ui-auth", version.ref = "firebase-ui-auth" }
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
 compose_material3 = { module = "androidx.compose.material3:material3" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinx-coroutines-play-services" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
-firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth-ktx" }
+#firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth-ktx" }
+#For Hilt
+hilt-android-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+# For Hilt Navigation Compose (optional, but often useful)
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.2.0" }
+
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "benmanesversion" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "google-gms-google-services" }
+
+#Hilt
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

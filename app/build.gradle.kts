@@ -1,12 +1,12 @@
-
-
 plugins {
     id("com.android.application")
     kotlin("android")
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.hilt) // Apply Hilt plugin using the alias from libs.versions.toml
+    kotlin("kapt") // Add kotlin-kapt plugin for annotation processing
 }
 
-android{
+android {
     compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
@@ -81,6 +81,11 @@ dependencies {
     implementation(libs.androidx.constraint.layout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.firebase.database)
+    implementation(libs.firebase.auth)
+    
+    // Hilt Dependencies
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
 
@@ -88,4 +93,12 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit.ktx)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.espresso.core)
+}
+
+hilt {
+    enableAggregatingTask = false
+}
+
+kapt {
+    correctErrorTypes = true
 }

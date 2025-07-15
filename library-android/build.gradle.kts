@@ -23,9 +23,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
+
 
     buildTypes {
         getByName("release") {
@@ -54,7 +52,7 @@ android {
 dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
-
+    implementation(libs.hilt.android)
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.test.runner)

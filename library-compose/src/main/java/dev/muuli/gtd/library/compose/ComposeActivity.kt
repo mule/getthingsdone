@@ -3,6 +3,7 @@ package dev.muuli.gtd.library.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,20 +24,19 @@ import dev.muuli.gtd.library.compose.ui.components.Factorial
 import dev.muuli.gtd.library.compose.auth.AuthViewModel
 import dev.muuli.gtd.library.compose.auth.SignInScreen
 import androidx.compose.material3.ExperimentalMaterial3Api
-import com.google.firebase.auth.FirebaseAuth
-import dev.muuli.gtd.library.compose.auth.AuthRepository
+import dagger.hilt.android.AndroidEntryPoint
 
 
 
 
+@AndroidEntryPoint
 class ComposeActivity : ComponentActivity() {
+
+    private val viewModel: AuthViewModel by viewModels()
+
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // In a real app, you might use Hilt or another DI framework
-        // to provide the AuthViewModel and its dependencies.
-        val authRepository = AuthRepository(FirebaseAuth.getInstance())
-        val viewModel = AuthViewModel(authRepository)
         setContent {
             AppMain(viewModel)
         }
