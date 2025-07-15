@@ -24,13 +24,23 @@ import dev.muuli.gtd.library.compose.ui.components.Factorial
 import dev.muuli.gtd.library.compose.auth.AuthViewModel
 import dev.muuli.gtd.library.compose.auth.SignInScreen
 import androidx.compose.material3.ExperimentalMaterial3Api
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import dev.muuli.gtd.library.compose.auth.AuthRepository
+import io.mockk.every
+import io.mockk.mockk
+
 
 
 class ComposeActivity : ComponentActivity() {
-    @ExperimentalAnimationApi
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = AuthViewModel()
+        // In a real app, you might use Hilt or another DI framework
+        // to provide the AuthViewModel and its dependencies.
+        val authRepository = AuthRepository(FirebaseAuth.getInstance())
+        val viewModel = AuthViewModel(authRepository)
         setContent {
             AppMain(viewModel)
         }
@@ -38,9 +48,9 @@ class ComposeActivity : ComponentActivity() {
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class) // <-- Add this annotation
+
+@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalAnimationApi
-@Preview
 @Composable
 fun AppMain(viewModel: AuthViewModel) {
     MaterialTheme {
@@ -60,7 +70,7 @@ fun AppMain(viewModel: AuthViewModel) {
                     .wrapContentSize(align = Alignment.Center)
                     .padding(horizontal = 8.dp)
             ) {
-                val user by viewModel.user.collectAsState() // This line needs the getValue import
+                val user by viewModel.user.collectAsState()
                 if (user == null) {
                     SignInScreen(viewModel)
                 } else {
@@ -70,3 +80,9 @@ fun AppMain(viewModel: AuthViewModel) {
         }
     }
 }
+
+
+
+
+
+

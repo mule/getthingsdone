@@ -57,6 +57,12 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.kotlinx.coroutines.play.services)
     implementation(libs.firebase.auth.ktx)
+    debugImplementation(libs.mockk)
+
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk) // You already have it for unit tests
+    testImplementation(libs.kotlinx.coroutines.test)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

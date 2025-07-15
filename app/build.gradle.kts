@@ -1,10 +1,12 @@
+
+
 plugins {
     id("com.android.application")
     kotlin("android")
     alias(libs.plugins.google.gms.google.services)
 }
 
-android {
+android{
     compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
@@ -42,6 +44,20 @@ android {
         disable.add("GradleDependency")
     }
 
+    packaging {
+        resources {
+            excludes.add("/META-INF/LICENSE.md")
+            excludes.add("/META-INF/LICENSE-notice.md")
+            excludes.add("/META-INF/NOTICE.md")
+            // You might also need to exclude other common conflicting files
+            // For example, if you see similar errors for NOTICE.txt or other license files:
+            // excludes += '/META-INF/LICENSE.txt'
+            // excludes += '/META-INF/NOTICE.txt'
+            // excludes += '/META-INF/DEPENDENCIES'
+            // excludes += '/META-INF/AL2.0'
+            // excludes += '/META-INF/LGPL2.1'
+        }
+    }
     // Use this block to configure different flavors
 //    flavorDimensions("version")
 //    productFlavors {
@@ -55,6 +71,8 @@ android {
 //        }
 //    }
 }
+
+
 
 dependencies {
     implementation(projects.libraryAndroid)

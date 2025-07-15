@@ -5,17 +5,17 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.AuthResult
 import kotlinx.coroutines.tasks.await
 
-class AuthRepository(
-    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+open class AuthRepository(
+    protected val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 ) {
-    val currentUser get() = firebaseAuth.currentUser
+    open val currentUser get() = firebaseAuth.currentUser
 
-    suspend fun signInWithGoogle(idToken: String): AuthResult {
+    open suspend fun signInWithGoogle(idToken: String): AuthResult {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         return firebaseAuth.signInWithCredential(credential).await()
     }
 
-    fun signOut() {
+   open fun signOut() {
         firebaseAuth.signOut()
     }
 }
