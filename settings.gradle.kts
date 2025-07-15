@@ -7,14 +7,14 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = ("kotlin-android-template")
-
+rootProject.name = ("getting-things-done-android-client")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(

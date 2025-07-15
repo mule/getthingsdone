@@ -3,8 +3,8 @@
 
     <application>
         <activity
-            android:name="com.ncorti.kotlin.template.app.ComposeActivity"
+            android:name="dev.muuli.gtd.library.compose.ComposeActivity"
             android:exported="false" />
     </application>
 
-</manifest>
+        </manifest>

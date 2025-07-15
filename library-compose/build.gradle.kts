@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
     kotlin("android")
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt) // Apply Hilt plugin
+    kotlin("kapt") // Add kotlin-kapt plugin
 
 }
 
@@ -10,7 +12,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
-        namespace = "com.ncorti.kotlin.template.library.compose"
+        namespace = "dev.muuli.gtd.app.library.compose"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -24,9 +26,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
+
 
     buildFeatures {
         compose = true
@@ -52,8 +52,32 @@ dependencies {
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
+    implementation(libs.compose.material3)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.ui.auth)
+    implementation(libs.play.services.auth)
+    implementation(libs.kotlinx.coroutines.play.services)
+    // implementation(libs.firebase.auth.ktx)
+
+
+
+    // Hilt Dependencies
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    // Optional: Hilt Navigation Compose if you use Jetpack Navigation with Compose
+    implementation(libs.hilt.navigation.compose)
+
+    debugImplementation(libs.mockk)
+
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk) // You already have it for unit tests
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     debugImplementation(libs.compose.ui.test.manifest)
     androidTestImplementation(libs.compose.ui.test.junit4)
