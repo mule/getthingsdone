@@ -10,7 +10,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -62,8 +67,12 @@ fun MainView(viewModel: AuthViewModel) {
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
                     actions = {
-                        TextButton(onClick = { viewModel.signOut() }) {
-                            Text(text = "Sign out")
+                        IconButton (onClick = { viewModel.signOut() }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ExitToApp, // Replace with your actual icon
+                                contentDescription = "Sign Out",
+                                tint = MaterialTheme.colorScheme.onPrimary // Or Color.White, Color.Black etc. for testing
+                            )
                         }
                     }
                 )
