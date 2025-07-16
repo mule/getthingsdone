@@ -2,6 +2,7 @@ package dev.muuli.gtd.library.compose.auth
 
 import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,17 +29,38 @@ fun SignInScreen(viewModel: AuthViewModel) {
     }
 
     if (user == null) {
-        Button(onClick = {
-            val providers = arrayListOf(
-                AuthUI.IdpConfig.GoogleBuilder().build()
-            )
-            val signInIntent = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build()
-            launcher.launch(signInIntent)
-        }) {
-            Text(text = "Sign in with Google", style = MaterialTheme.typography.bodyLarge)
+        Column {
+            Button(onClick = {
+                val providers = arrayListOf(
+                    AuthUI.IdpConfig.GoogleBuilder().build()
+                )
+                val signInIntent = AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(providers)
+                    .build()
+                launcher.launch(signInIntent)
+            }) {
+                Text(
+                    text = "Sign in with Google",
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+
+            Button(onClick = {
+                val providers = arrayListOf(
+                    AuthUI.IdpConfig.EmailBuilder().build()
+                )
+                val signInIntent = AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(providers)
+                    .build()
+                launcher.launch(signInIntent)
+            }) {
+                Text(
+                    text = "Sign in with Email",
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
         }
     } else {
         Button(onClick = { viewModel.signOut() }) {
