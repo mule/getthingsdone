@@ -65,11 +65,11 @@ fun MainView(viewModel: AuthViewModel) {
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
                     actions = {
-                        IconButton (onClick = { viewModel.signOut() }) {
+                        IconButton(onClick = { viewModel.signOut() }) {
                             Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ExitToApp, // Replace with your actual icon
+                                imageVector = Icons.AutoMirrored.Filled.ExitToApp,
                                 contentDescription = "Sign Out",
-                                tint = MaterialTheme.colorScheme.onPrimary // Or Color.White, Color.Black etc. for testing
+                                tint = MaterialTheme.colorScheme.onPrimary,
                             )
                         }
                     }
