@@ -33,6 +33,7 @@ subprojects {
     dependencies {
         detektPlugins(detektFormatting)
     }
+
 }
 
 tasks {

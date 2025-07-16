@@ -1,6 +1,7 @@
 package dev.muuli.gtd.library.compose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -27,7 +28,7 @@ import dev.muuli.gtd.library.compose.auth.AuthViewModel
 import dev.muuli.gtd.library.compose.auth.SignInScreen
 
 @AndroidEntryPoint
-class ComposeActivity : ComponentActivity() {
+class MainViewActivity : ComponentActivity() {
 
     private val viewModel: AuthViewModel by viewModels()
 
@@ -52,7 +53,7 @@ fun MainView(viewModel: AuthViewModel) {
                 TopAppBar(
                     title = {
                         val titleText = if (user != null) {
-                            "Welcome, ${'$'}{user?.displayName ?: "User"}"
+                            user?.email?.split("@")?.get(0) ?: "Unknown user"
                         } else {
                             "Get Things Done"
                         }
@@ -82,5 +83,11 @@ fun MainView(viewModel: AuthViewModel) {
 
 @Composable
 fun AuthenticatedMainScreen(user: FirebaseUser?) {
-    Text(text = "You are logged in as ${'$'}{user?.email}")
+    val displayText = when {
+        user?.email?.isNotBlank() == true -> "You are logged in as ${user.email}"
+        user != null -> "You are logged in. (Email not available)"
+        else -> "Not currently logged in."
+    }
+    Log.d("AuthScreen", "User: ${user?.uid}, Email: ${user?.email}, DisplayText: $displayText")
+    Text(text = displayText)
 }

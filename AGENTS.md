@@ -28,6 +28,6 @@ This repository contains the native Android client for a personal task manager. 
 ## Best Practices
 - Write concise commit messages in the imperative mood (e.g., "Add feature" not "Added" or "Adding").
 - Run `./gradlew check` before submitting changes to ensure tests and static analysis pass.
-- Use `./gradlew ktlintFormat` to automatically format Kotlin sources.
+- Use `./gradlew detekt --auto-correct` to automatically format Kotlin sources.
 - Avoid leaving `TODO` or `STOPSHIP` comments; Detekt forbids them.
 - Keep pull requests focused on a single topic.

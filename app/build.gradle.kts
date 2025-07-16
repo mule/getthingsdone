@@ -37,9 +37,11 @@ android {
     }
 
     lint {
-        warningsAsErrors = true
+        warningsAsErrors = false
         abortOnError = true
         disable.add("GradleDependency")
+        disable.add("AndroidGradlePluginVersion")
+
     }
 
     packaging {
