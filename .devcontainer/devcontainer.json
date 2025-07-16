@@ -1,0 +1,29 @@
+{
+  "name": "Android Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [
+    5037
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": "true",
+      "moby": "true"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.gradle",
+        "fwcd.kotlin",
+        "esbenp.prettier-vscode",
+        "sonarsource.sonarlint-vscode",
+        "github.vscode-pull-request-github"
+      ]
+    }
+  },
+  "postCreateCommand": "sudo chown -R vscode ${containerWorkspaceFolder}",
+  "remoteUser": "vscode"
+}
