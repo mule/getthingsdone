@@ -14,6 +14,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -59,7 +60,12 @@ fun MainView(viewModel: AuthViewModel) {
                         }
                         Text(text = titleText)
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
+                    actions = {
+                        TextButton(onClick = { viewModel.signOut() }) {
+                            Text(text = "Sign out")
+                        }
+                    }
                 )
             },
             containerColor = MaterialTheme.colorScheme.background
