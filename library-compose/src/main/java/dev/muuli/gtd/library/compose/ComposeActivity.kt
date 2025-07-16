@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -20,14 +21,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.muuli.gtd.library.compose.ui.components.Factorial
+import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.AndroidEntryPoint
 import dev.muuli.gtd.library.compose.auth.AuthViewModel
 import dev.muuli.gtd.library.compose.auth.SignInScreen
-import androidx.compose.material3.ExperimentalMaterial3Api
-import dagger.hilt.android.AndroidEntryPoint
-
-
-
 
 @AndroidEntryPoint
 class ComposeActivity : ComponentActivity() {
@@ -38,22 +35,29 @@ class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppMain(viewModel)
+            MainView(viewModel)
         }
     }
 }
 
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalAnimationApi
 @Composable
-fun AppMain(viewModel: AuthViewModel) {
+fun MainView(viewModel: AuthViewModel) {
+    val user by viewModel.user.collectAsState()
+
     MaterialTheme {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = "Kotlin Android Template") },
+                    title = {
+                        val titleText = if (user != null) {
+                            "Welcome, ${'$'}{user?.displayName ?: "User"}"
+                        } else {
+                            "Get Things Done"
+                        }
+                        Text(text = titleText)
+                    },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
                 )
             },
@@ -66,19 +70,17 @@ fun AppMain(viewModel: AuthViewModel) {
                     .wrapContentSize(align = Alignment.Center)
                     .padding(horizontal = 8.dp)
             ) {
-                val user by viewModel.user.collectAsState()
                 if (user == null) {
                     SignInScreen(viewModel)
                 } else {
-                    Factorial()
+                    AuthenticatedMainScreen(user)
                 }
             }
         }
     }
 }
 
-
-
-
-
-
+@Composable
+fun AuthenticatedMainScreen(user: FirebaseUser?) {
+    Text(text = "You are logged in as ${'$'}{user?.email}")
+}
