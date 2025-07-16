@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="dev.muuli.gtd.library.compose.ComposeActivity"
+            android:name="dev.muuli.gtd.library.compose.MainViewActivity"
             android:exported="false" />
     </application>
 
